@@ -1,21 +1,22 @@
-import React from "react";
-import { format } from "date-fns";
-import ExampleComponent from "./ExampleComponent";
+import React, { useState, useEffect } from 'react';
+import ExampleComponent from './ExampleComponent';
+import TestComponent from './TestComponent';
 
-// Add your code own within the return statement
-function App() {
+const App = () => {
+  const [headerText, setHeaderText] = useState(new Date().toLocaleTimeString());
+
+  useEffect(() => {
+    // Set the header text to "Now" after the component mounts
+    setHeaderText('Now');
+  }, []);
+
   return (
-    <div className="App">
-      <h1>{format(new Date(), "MMMM do yyyy, h:mm:ss a")}</h1>
-      <p className="App-intro">
-        In React apps, we write JSX - it looks like HTML, and uses a lot of HTML
-        syntax. JSX lets us include JavaScript functions right along with the
-        HTML, and also allows us to add in components, which are separate,
-        self-contained chunks of JSX.
-      </p>
+    <div>
+      <h1>{headerText}</h1>
       <ExampleComponent />
+      <TestComponent />
     </div>
   );
-}
+};
 
 export default App;
